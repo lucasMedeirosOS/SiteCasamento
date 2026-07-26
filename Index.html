@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Casamento de Lucas & Thamara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #8B7355;
+      --primary-dark: #6e5a42;
+      --bg: #FAFAFA;
+      --card-bg: #FFFFFF;
+      --text: #333333;
+      --accent: #27ae60;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--primary); margin-bottom: 8px; font-weight: 600; }
+    p.subtitle { font-size: 1rem; color: #555; font-style: italic; }
+
+    .container { max-width: 1050px; margin: 30px auto; padding: 0 15px; }
+    
+    .invitation-card {
+      text-align: center;
+      background: var(--card-bg);
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 25px;
+    }
+
+    .invitation-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--primary); margin-bottom: 12px; }
+
+    .event-details {
+      background: #FDFBF7;
+      border: 1px solid #E8E0D5;
+      border-radius: 10px;
+      padding: 18px 12px;
+      margin: 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 12px;
+    }
+
+    .event-item { text-align: center; }
+    .event-item strong { display: block; color: var(--primary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .event-item span { font-size: 0.95rem; font-weight: 500; }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #27ae60;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .btn-maps:hover { background-color: #219653; }
+
+    .notice-banner {
+      background-color: #FFF8E7;
+      border: 1px solid #FFE0B2;
+      color: #8D6E63;
+      padding: 12px 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+    }
+
+    .category-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin: 40px 0 15px 0;
+      border-bottom: 2px solid #E5E5E5;
+      padding-bottom: 8px;
+    }
+
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gift-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .gift-card img { width: 100%; height: 180px; object-fit: cover; }
+    .gift-info { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .gift-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; }
+    .gift-details { font-size: 0.85rem; color: #666; margin-bottom: 10px; }
+    
+    .progress-bar-bg { background: #eee; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+    .progress-bar-fill { background: var(--primary); height: 100%; transition: width 0.3s; }
+    .progress-text { font-size: 0.78rem; color: #777; margin-bottom: 8px; }
+
+    /* Estilo do aviso de quem comprou */
+    .buyer-tag {
+      background: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #A5D6A7;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .btn-gift {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      width: 100%;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+    .btn-gift:hover { background-color: var(--primary-dark); }
+    .btn-gift:disabled { background-color: #ccc; cursor: not-allowed; }
+
+    .btn-store {
+      background-color: transparent;
+      color: #666;
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+      display: block;
+    }
+    .btn-store:hover { background-color: #f0f0f0; color: #333; }
+
+    /* Modais */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.75);
+      align-items: center; justify-content: center;
+      padding: 15px; z-index: 1000;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-content {
+      background: white; padding: 25px 20px; border-radius: 12px;
+      max-width: 500px; width: 100%; text-align: center; position: relative;
+      margin: auto; max-height: 90vh; overflow-y: auto;
+    }
+
+    #welcome-modal { display: flex; }
+    .invite-img { width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .invite-msg { font-size: 0.9rem; color: #444; text-align: left; margin-bottom: 15px; line-height: 1.6; }
+    
+    .close-btn { position: absolute; top: 12px; right: 18px; font-size: 1.6rem; cursor: pointer; color: #888; padding: 5px; }
+    .pix-box { background: #f4f4f4; padding: 12px; border-radius: 6px; font-family: monospace; word-break: break-all; margin: 12px 0; font-size: 0.85rem; border: 1px dashed #ccc; user-select: all; }
+    
+    .instruction-step { text-align: left; background: #fafafa; padding: 12px; border-radius: 6px; font-size: 0.82rem; margin-top: 15px; color: #555; }
+    .instruction-step ol { margin-left: 18px; }
+
+    footer { text-align: center; padding: 35px 20px; color: #777; font-size: 0.88rem; border-top: 1px solid #E5E5E5; margin-top: 50px; }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2rem; }
+      .category-title { font-size: 1.8rem; }
+      .modal-content { padding: 20px 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1º MODAL: CONVITE RELIGIOSO -->
+  <div class="modal" id="welcome-modal" onclick="handleModalOverlayClick(event, 'welcome-modal')">
+    <div class="modal-content" style="max-width: 550px;">
+      <span class="close-btn" onclick="closeWelcomeModal()">&times;</span>
+      <img src="Convite do Casamento.jpg" alt="Convite de Casamento Lucas e Thamara" class="invite-img" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80'">
+
+      <h2 style="font-family: 'Cormorant Garamond', serif; color: var(--primary); font-size: 1.8rem; margin-bottom: 10px;">Nosso Convite Especial</h2>
+      
+      <div class="invite-msg">
+        <p>Olá! Estamos preparando um momento muito especial para celebrar o nosso amor e receber as bênçãos de Deus. Participaremos de uma linda cerimônia religiosa comunitária, pensada com muito carinho para reunir nossa família e amigos. A sua presença é muito importante para nós!</p>
+        
+        <div class="event-details" style="margin: 12px 0;">
+          <div class="event-item">
+            <strong>📅 Data</strong>
+            <span>08 de agosto de 2026</span>
+          </div>
+          <div class="event-item">
+            <strong>🕘 Horário</strong>
+            <span>09:00h</span>
+          </div>
+          <div class="event-item" style="width: 100%;">
+            <strong>📍 Local</strong>
+            <span>Paróquia São Sebastião (Inhoaíba)</span>
+            <span style="font-size: 0.8rem; color: #777; display: block;">Rua do Papagaio, nº 23 - Inhoaíba, Rio de Janeiro - RJ</span>
+            
+            <a href="https://maps.google.com/?q=Paroquia+Sao+Sebastiao+Rua+do+Papagaio+23+Inhoaiba+Rio+de+Janeiro" target="_blank" rel="noopener" class="btn-maps">
+              📍 Abrir Rota no GPS (Maps / Waze)
+            </a>
+          </div>
+        </div>
+
+        <p style="text-align: center; font-style: italic; color: var(--primary); font-weight: 500;">Esperamos você lá para compartilhar essa alegria com a gente!</p>
+      </div>
+
+      <button class="btn-gift" onclick="closeWelcomeModal()" style="font-size: 0.95rem; padding: 13px;">Continuar ➔</button>
+    </div>
+  </div>
+
+  <!-- 2º MODAL: AVISO E RECADINHO DOS NOIVOS -->
+  <div class="modal" id="notice-modal" onclick="handleModalOverlayClick(event, 'notice-modal')">
+    <div class="modal-content" style="max-width: 520px;">
+      <span class="close-btn" onclick="closeNoticeModal()">&times;</span>
+      
+      <h2 style="font-family: 'Cormorant Garamond', serif; color: var(--primary); font-size: 1.9rem; margin-bottom: 12px;">✨ Recadinho dos Noivos</h2>
+      
+      <div class="invite-msg" style="text-align: left; line-height: 1.65; color: #444;">
+        <p style="margin-bottom: 12px;">Como já vivemos sob o mesmo teto há um ano, nosso lar já conta com a maioria dos itens do dia a dia! Por isso, ficamos um pouco sem jeito no início, mas pensamos em uma forma carinhosa de organizar esta lista com os itens que ainda nos faltam e as experiências da nossa lua de mel.</p>
+        
+        <p style="margin-bottom: 12px;">Para não ficar pesado para ninguém, dividimos tudo em <strong>cotas simples e acessíveis</strong>, assim qualquer pessoa pode nos ajudar a conquistar esses sonhos do seu jeito e sem peso no bolso!</p>
+        
+        <p style="margin-bottom: 12px;">Sinta-se totalmente à vontade! A contribuição é espontânea e de coração. Caso prefira nos presentear com o produto físico em mãos, pedimos a gentileza de nos avisar para atualizarmos o site e evitar itens duplicados.</p>
+
+        <p style="text-align: center; font-style: italic; color: var(--primary); font-weight: 600; margin-top: 15px;">
+          Mas lembre-se: o que mais nos importa, acima de tudo, é ter a sua presença e o seu carinho para comemorarmos juntos esse dia tão especial! ❤️
+        </p>
+      </div>
+
+      <button class="btn-gift" onclick="closeNoticeModal()" style="font-size: 0.95rem; padding: 13px; margin-top: 10px;">Acessar Lista de Presentes ➔</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Lucas & Thamara</h1>
+    <p class="subtitle">Convidamos você para celebrar o nosso amor com família e amigos</p>
+  </header>
+
+  <div class="container">
+    <div class="invitation-card">
+      <h2>Sua presença é o nosso maior presente!</h2>
+      <p>A coisa mais importante para nós é compartilhar esse dia tão especial ao lado da nossa família e de nossos amigos queridos. Participaremos de uma cerimônia religiosa comunitária e esperamos você lá!</p>
+      
+      <div class="event-details">
+        <div class="event-item">
+          <strong>Data</strong>
+          <span>08/08/2026</span>
+        </div>
+        <div class="event-item">
+          <strong>Horário</strong>
+          <span>09:00h</span>
+        </div>
+        <div class="event-item" style="width: 100%;">
+          <strong>Local</strong>
+          <span>Paróquia São Sebastião - Inhoaíba</span>
+          <br>
+          <a href="https://maps.google.com/?q=Paroquia+Sao+Sebastiao+Rua+do+Papagaio+23+Inhoaiba+Rio+de+Janeiro" target="_blank" rel="noopener" class="btn-maps">
+            📍 Como Chegar (Google Maps / Waze)
+          </a>
+        </div>
+      </div>
+
+      <p style="font-size: 0.88rem; color: #666; margin-top: 12px;">Caso deseje nos abençoar com um carinho para a montagem do nosso lar ou para a nossa lua de mel em Penedo, preparamos esta lista de sugestões com muito amor.</p>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 12px;">
+        <button onclick="openWelcomeModal()" style="background: none; border: none; color: var(--primary); text-decoration: underline; cursor: pointer; font-size: 0.85rem;">
+          🔍 Reabrir foto do convite
+        </button>
+        <button onclick="openNoticeModal()" style="background: none; border: none; color: var(--primary); text-decoration: underline; cursor: pointer; font-size: 0.85rem;">
+          ✨ Ler recadinho dos noivos
+        </button>
+      </div>
+    </div>
+
+    <div class="notice-banner">
+      ⏱️ <strong>Nota de atualização:</strong> O status das cotas e presentes recebidos é atualizado em nosso site em até 24 horas após a confirmação.
+    </div>
+
+    <!-- Seção Produtos -->
+    <h3 class="category-title">🏡 Produtos para o Nosso Lar</h3>
+    <div class="gifts-grid" id="products-container"></div>
+
+    <!-- Seção Serviços / Lua de Mel -->
+    <h3 class="category-title">✈️ Experiências & Lua de Mel (Penedo)</h3>
+    <div class="gifts-grid" id="services-container"></div>
+
+    <!-- Seção Contribuição Livre -->
+    <h3 class="category-title">💝 Contribuição de Coração</h3>
+    <div class="gifts-grid" id="free-container"></div>
+  </div>
+
+  <!-- Modal do Pix -->
+  <div class="modal" id="pix-modal" onclick="handleModalOverlayClick(event, 'pix-modal')">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 id="modal-title" style="color: var(--primary); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;">Presentear</h3>
+      <p id="modal-subtitle" style="margin-top: 6px; font-size: 0.9rem; color: #555;"></p>
+      
+      <p style="font-size: 0.85rem; color: #666; margin-top: 15px;">Chave Pix (Copia e Cola):</p>
+      <div class="pix-box" id="pix-key">828209a7-5e0d-446c-a0eb-475c3bfe26b4</div>
+      
+      <button class="btn-gift" id="btn-copy" onclick="copyPix()">Copiar Chave Pix</button>
+
+      <div class="instruction-step">
+        <strong>💡 Como concluir seu presente:</strong>
+        <ol style="margin-top: 5px;">
+          <li>Abra o aplicativo do seu banco e selecione a opção Pix Copia e Cola / Chave Pix.</li>
+          <li>Copie a chave acima e insira o valor correspondente à cota.</li>
+          <li>No campo <strong>"Descrição"</strong> ou <strong>"Mensagem"</strong> do Pix, escreva o nome do item e o seu nome para sabermos quem nos presenteou!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p style="font-size: 1.05rem; color: var(--primary); font-weight: 600;">Com todo o nosso carinho, Lucas & Thamara ❤️</p>
+    <p style="margin-top: 4px; font-size: 0.82rem;">Aguardamos você para celebrarmos juntos esse momento inesquecível!</p>
+  </footer>
+
+  <script>
+    const CHAVE_PIX_GERAL = "828209a7-5e0d-446c-a0eb-475c3bfe26b4";
+
+    function closeWelcomeModal() {
+      document.getElementById('welcome-modal').style.display = 'none';
+      document.getElementById('notice-modal').style.display = 'flex';
+    }
+
+    function openWelcomeModal() {
+      document.getElementById('welcome-modal').style.display = 'flex';
+    }
+
+    function closeNoticeModal() {
+      document.getElementById('notice-modal').style.display = 'none';
+    }
+
+    function openNoticeModal() {
+      document.getElementById('notice-modal').style.display = 'flex';
+    }
+
+    function handleModalOverlayClick(e, modalId) {
+      if (e.target.id === modalId) {
+        if (modalId === 'welcome-modal') {
+          closeWelcomeModal();
+        } else {
+          document.getElementById(modalId).style.display = 'none';
+        }
+      }
+    }
+
+    // BASE DE DADOS DOS PRESENTES (COM CAMPO 'compradores')
+    const gifts = [
+      // --- PRODUTOS ---
+      {
+        category: "produto",
+        title: "Ar Condicionado Split Fujitsu 9.000 BTUs",
+        precoTotal: "R$ 2.500,00",
+        valorCota: "R$ 100,00",
+        cotasTotais: 25,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://m.magazineluiza.com.br/a-static/420x420/ar-condicionado-split-hi-wall-fujitsu-airstage-premium-inverter-9-000-btus-frio-220v-r-32/climario/31612/aab3eb3b26f11332ef8c0985d45aeb65.jpeg",
+        urlStore: "https://www.magazineluiza.com.br/ar-condicionado-split-hi-wall-fujitsu-airstage-premium-inverter-9-000-btus-frio-220v-r-32/p/jhb6c3b2aj/ar/aciv/"
+      },
+      {
+        category: "produto",
+        title: "Caixa De Som Speaker Aiwa Bluetooth",
+        precoTotal: "R$ 220,00",
+        valorCota: "R$ 55,00",
+        cotasTotais: 4,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_812534-MLA99524049864_122025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/caixa-de-som-speaker-aiwa-aws-sp-01-bluetooth-cor-preto/p/MLB26826554"
+      },
+      {
+        category: "produto",
+        title: "Cortina Blackout Quarto n°1 (2,80 x 1,80m)",
+        precoTotal: "R$ 85,00",
+        valorCota: "R$ 85,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_886159-MLB70891415127_082023-F-cortina-pvc-blackout-corta-100-luz-solar-280-x-180-m.webp",
+        urlStore: "https://produto.mercadolivre.com.br/MLB-1253881439-cortina-pvc-blackout-corta-100-luz-solar-280-x-180-m-_JM"
+      },
+      {
+        category: "produto",
+        title: "Cortina Blackout Quarto n°2 (2,80 x 1,80m)",
+        precoTotal: "R$ 85,00",
+        valorCota: "R$ 85,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_886159-MLB70891415127_082023-F-cortina-pvc-blackout-corta-100-luz-solar-280-x-180-m.webp",
+        urlStore: "https://produto.mercadolivre.com.br/MLB-1253881439-cortina-pvc-blackout-corta-100-luz-solar-280-x-180-m-_JM"
+      },
+      {
+        category: "produto",
+        title: "Espremedor Portátil BBG Elétrico 45W",
+        precoTotal: "R$ 65,00",
+        valorCota: "R$ 65,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_874227-MLA93502339071_092025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/espremedor-portatil-bbg-eletrico-45w-para-suco-de-laranja-e-frutas/p/MLB23829702"
+      },
+      {
+        category: "produto",
+        title: "Jogo De Toalha Banho 4 Peças Loft Camesa",
+        precoTotal: "R$ 120,00",
+        valorCota: "R$ 60,00",
+        cotasTotais: 2,
+        cotasVendidas: 1,
+        compradores: "Jefferson", // ATUALIZADO
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_799726-MLA96094691621_102025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/jogo-de-toalha-banho-4-pecas-100-algodao-400-grm-loft-camesa/p/MLB46156123"
+      },
+      {
+        category: "produto",
+        title: "Kit 3 Unidades Panos De Prato Gourmet",
+        precoTotal: "R$ 35,00",
+        valorCota: "R$ 35,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_697202-MLB101422482690_122025-F-kit-3-unidades-panos-de-pratos-gourmet-100-algodao.webp",
+        urlStore: "https://www.mercadolivre.com.br/kit-3-unidades-panos-de-pratos-gourmet-100-algodao/up/MLBU3693120314"
+      },
+      {
+        category: "produto",
+        title: "Mixer De Alimentos Wap WM1 3 em 1",
+        precoTotal: "R$ 140,00",
+        valorCota: "R$ 70,00",
+        cotasTotais: 2,
+        cotasVendidas: 2,
+        compradores: "Fabiana", // ATUALIZADO (100% Concluído)
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_683915-MLU78444749450_082024-F-mixer-de-alimentos-wap-wm1-3-em-1-inox-preto-e-inox-110v.webp",
+        urlStore: "https://www.mercadolivre.com.br/mixer-de-alimentos-wap-wm1-3-em-1-inox-preto-e-inox-110v/up/MLBU2900061975"
+      },
+      {
+        category: "produto",
+        title: "Panela Elétrica De Arroz Wap 2 em 1",
+        precoTotal: "R$ 130,00",
+        valorCota: "R$ 65,00",
+        cotasTotais: 2,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_876581-MLA96079563463_102025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/panela-eletrica-de-arroz-wap-wrc1000-2-em-1-com-revestimento-cor-preto/p/MLB42517853"
+      },
+      {
+        category: "produto",
+        title: "Panela De Pressão Elétrica 5l Nutripro Preta Midea",
+        precoTotal: "R$ 374,00",
+        valorCota: "R$ 93,50",
+        cotasTotais: 4,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_850138-MLA99979797595_112025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/panela-de-pressao-eletrica-5l-nutripro-preta-midea-cor-preto/p/MLB53602800"
+      },
+      {
+        category: "produto",
+        title: "Projetor Magcubic HY300GT Full HD Google TV",
+        precoTotal: "R$ 380,00",
+        valorCota: "R$ 76,00",
+        cotasTotais: 5,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_780906-MLA111311596511_052026-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/projetor-magcubic-hy300GT-full-hd-com-google-tv-wi-fi-5-e-bluetooth/p/MLB64634561"
+      },
+      {
+        category: "produto",
+        title: "Rack TV Bancada 60 Pol Diana Off White/Freijó",
+        precoTotal: "R$ 320,00",
+        valorCota: "R$ 80,00",
+        cotasTotais: 4,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_840073-MLA99969952755_112025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/rack-tv-bancada-60-pol-160cm-diana-off-whitefreijo-c05/p/MLB49419962"
+      },
+      {
+        category: "produto",
+        title: "Robô Aspirador De Pó Electrolux ERB11",
+        precoTotal: "R$ 450,00",
+        valorCota: "R$ 90,00",
+        cotasTotais: 5,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_992641-MLA84838266191_052025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/robo-aspirador-de-po-2h20min-bateria-longa-duracao-automatico-varre-aspira-passa-pano-electrolux-erb11-bivolt-preto-sensor-antiqueda/p/MLB28462122"
+      },
+      {
+        category: "produto",
+        title: "Saca Rolhas Com 2 Estágios Tradicional",
+        precoTotal: "R$ 25,00",
+        valorCota: "R$ 25,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_964586-MLA96065025610_102025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/saca-rolhas-com-2-estagios-abridor-garrafa-vinho-tradicional/p/MLB44550687"
+      },
+      {
+        category: "produto",
+        title: "Toalha Rosto Buddemeyer Fio Penteado",
+        precoTotal: "R$ 45,00",
+        valorCota: "R$ 45,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_708277-MLA95979287564_102025-F.webp",
+        urlStore: "https://www.mercadolivre.com.br/toalha-rosto-buddemeyer-fio-penteado-canelado-cor-cinza-1839/p/MLB54897767"
+      },
+      {
+        category: "produto",
+        title: "Torradeira Elétrica de Pão 750W",
+        precoTotal: "R$ 90,00",
+        valorCota: "R$ 90,00",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://http2.mlstatic.com/D_NQ_NP_2X_948861-MLB105647816670_012026-F-torradeira-eletrica-de-pao-750w-2-fatias-6-niveis.webp",
+        urlStore: "https://www.mercadolivre.com.br/torradeira-eletrica-de-pao-750w-2-fatias-6-niveis/up/MLBU3759435365"
+      },
+
+      // --- SERVIÇOS / LUA DE MEL ---
+      {
+        category: "servico",
+        title: "2 Estadias no Hotel Bertell Inn (Penedo)",
+        precoTotal: "R$ 900,00",
+        valorCota: "R$ 100,00",
+        cotasTotais: 9,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/126237027.jpg?k=7225bdc49943e01f489a3bcfd238e27b99582b7a0edb49983dbea0a76d3c6bda&o=",
+        urlStore: "https://www.booking.com/hotel/br/bertell-inn.en-gb.html"
+      },
+      {
+        category: "servico",
+        title: "Almoço Especial na Casa do Fritz",
+        precoTotal: "R$ 240,00",
+        valorCota: "R$ 120,00",
+        cotasTotais: 2,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmFAEr1eZPg7uK5STGe4q0mpPWrrI3y7Mhe36q8j4fkhC8Wd3kMi0s0-aM2hjZKV2FyHNKWr44nCGHFmh9Jp3gNdrMGB8yV_etWfVJaKACNFuXQo-cCJuigV5LujfikmgIenHj1elWYiJPT=s680-w680-h510",
+        urlStore: "https://www.instagram.com/casadifritz"
+      },
+      {
+        category: "servico",
+        title: "Jantar Romântico Petit Gourmet",
+        precoTotal: "R$ 300,00",
+        valorCota: "R$ 100,00",
+        cotasTotais: 3,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnfHYyoBRhhNsTPuEAETXPQdyOYBoAMIUf_JBUzNNvBfDD7nqQoPU_OjeNBEobEGBsJ3ltG211G2zW6bxGd7J-jU7pDukDAxBuyAth42AQMtaHfqcRBNfKnmt98u2gqmtxGwCa-Nw=s680-w680-h510",
+        urlStore: "https://petitgourmetpenedo.com.br/"
+      },
+      {
+        category: "servico",
+        title: "Passeio de Quadriciclo (Águia de Penedo)",
+        precoTotal: "R$ 200,00",
+        valorCota: "R$ 100,00",
+        cotasTotais: 2,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPZpvCfPjsCo8M-H31-U40Bm-3poJXyiV8fyax5ZiakQ&s=10",
+        urlStore: "https://www.instagram.com/aguia_depenedo"
+      },
+
+      // --- CONTRIBUIÇÃO LIVRE ---
+      {
+        category: "livre",
+        title: "Contribuição Livre de Coração",
+        precoTotal: "Valor Livre",
+        valorCota: "Você escolhe",
+        cotasTotais: 1,
+        cotasVendidas: 0,
+        compradores: "",
+        img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500&q=80",
+        urlStore: ""
+      }
+    ];
+
+    const productsContainer = document.getElementById('products-container');
+    const servicesContainer = document.getElementById('services-container');
+    const freeContainer = document.getElementById('free-container');
+
+    function renderGifts() {
+      productsContainer.innerHTML = "";
+      servicesContainer.innerHTML = "";
+      freeContainer.innerHTML = "";
+
+      gifts.forEach(gift => {
+        const isFinished = gift.cotasVendidas >= gift.cotasTotais && gift.category !== 'livre';
+        const pct = gift.category === 'livre' ? 0 : Math.round((gift.cotasVendidas / gift.cotasTotais) * 100);
+
+        const cardHTML = `
+          <div class="gift-card">
+            <img src="${gift.img}" alt="${gift.title}">
+            <div class="gift-info">
+              <div>
+                <div class="gift-title">${gift.title}</div>
+                <div class="gift-details">
+                  ${gift.category === 'livre' 
+                    ? `Qualquer valor enviado nos ajudará imensamente!` 
+                    : (gift.cotasTotais > 1 
+                        ? `Cota de <strong>${gift.valorCota}</strong> (Total: ${gift.precoTotal})` 
+                        : `Valor: <strong>${gift.precoTotal}</strong>`)}
+                </div>
+                
+                ${gift.category !== 'livre' ? `
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: ${pct}%;"></div>
+                  </div>
+                  <div class="progress-text">
+                    ${gift.cotasVendidas} de ${gift.cotasTotais} cotas arrecadadas (${pct}%)
+                  </div>
+                ` : '<div style="margin-bottom: 20px;"></div>'}
+
+                ${gift.compradores ? `
+                  <div class="buyer-tag">
+                    🎁 ${isFinished ? 'Totalmente presenteado por' : 'Cota presenteada por'}: <strong>${gift.compradores}</strong>
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="btn-group">
+                <button class="btn-gift" ${isFinished ? 'disabled' : ''} onclick="openModal('${gift.title}', '${gift.valorCota}', '${gift.category}')">
+                  ${isFinished 
+                    ? 'Totalmente Presenteado ✓' 
+                    : (gift.category === 'livre' ? 'Enviar Contribuição' : 'Presentear com 1 Cota')}
+                </button>
+                ${gift.urlStore ? `<a href="${gift.urlStore}" target="_blank" rel="noopener" class="btn-store">Ver item na loja ↗</a>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+
+        if (gift.category === 'produto') {
+          productsContainer.innerHTML += cardHTML;
+        } else if (gift.category === 'servico') {
+          servicesContainer.innerHTML += cardHTML;
+        } else {
+          freeContainer.innerHTML += cardHTML;
+        }
+      });
+    }
+
+    function openModal(title, price, category) {
+      document.getElementById('modal-title').innerText = category === 'livre' ? 'Contribuição Livre' : title;
+      
+      if (category === 'livre') {
+        document.getElementById('modal-subtitle').innerHTML = `Obrigado por nos abençoar! Você pode enviar qualquer valor de coração no Pix abaixo.`;
+      } else {
+        document.getElementById('modal-subtitle').innerHTML = `Você escolheu contribuir com uma cota no valor de <strong>${price}</strong>.`;
+      }
+
+      document.getElementById('pix-key').innerText = CHAVE_PIX_GERAL;
+      document.getElementById('pix-modal').style.display = 'flex';
+      
+      const btnCopy = document.getElementById('btn-copy');
+      if (btnCopy) btnCopy.innerText = "Copiar Chave Pix";
+    }
+
+    function closeModal() {
+      document.getElementById('pix-modal').style.display = 'none';
+    }
+
+    function copyPix() {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(CHAVE_PIX_GERAL).then(() => {
+          showCopySuccess();
+        }).catch(() => {
+          fallbackCopyText(CHAVE_PIX_GERAL);
+        });
+      } else {
+        fallbackCopyText(CHAVE_PIX_GERAL);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showCopySuccess();
+      } catch (err) {
+        alert("Copie a chave manualmente: " + text);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showCopySuccess() {
+      const btnCopy = document.getElementById('btn-copy');
+      if (btnCopy) {
+        btnCopy.innerText = "✓ Chave Pix Copiada!";
+        setTimeout(() => { btnCopy.innerText = "Copiar Chave Pix"; }, 3000);
+      } else {
+        alert("Chave Pix copiada com sucesso!");
+      }
+    }
+
+    renderGifts();
+  </script>
+</body>
+</html>
